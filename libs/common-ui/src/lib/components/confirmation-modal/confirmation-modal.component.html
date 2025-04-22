@@ -1,0 +1,10 @@
+<lv-base-modal>
+  <div class="confirmation-modal">
+    <span class="confirmation-title">{{ title() }}</span>
+
+    <div class="confirmation-btn">
+      <button class="light-btn" (click)="onConfirmation(true)">Да</button>
+      <button class="primary-btn" (click)="onConfirmation(false)">Нет</button>
+    </div>
+  </div>
+</lv-base-modal>

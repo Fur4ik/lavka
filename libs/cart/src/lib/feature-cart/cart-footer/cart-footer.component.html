@@ -1,0 +1,12 @@
+<span class="medium">К оформлению: {{ totalNumber() }} шт., {{ totalPrice() | price }}</span>
+
+<div class="footer-btn">
+  <button class="light-btn" (click)="onOrder(false)">
+    <span>Очистить корзину</span>
+    <svg class="svg20" icon="delete"></svg>
+  </button>
+
+  <button class="primary-btn" (click)="onOrder(true)">
+    <span>Оформить</span>
+  </button>
+</div>

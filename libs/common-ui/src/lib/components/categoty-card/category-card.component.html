@@ -1,0 +1,12 @@
+@if (category(); as category) {
+  <div
+    class="category-card"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+    [class.shadow]="isMouseEnter()"
+    [routerLink]="category.src"
+  >
+    <span class="medium category-name">{{ category.name }}</span>
+    <img class="category-img" [src]="category.img" alt="">
+  </div>
+}

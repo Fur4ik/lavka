@@ -1,0 +1,8 @@
+<div class="h1 mb20">Цветы поштучно</div>
+
+@if (products$ | async; as products) {
+  <lv-product-page [products]="products">
+    Розы, орхидеи и другие цветы для создания уникальных композиций.
+    Каждый цветок — возможность создать неповторимый букет.
+  </lv-product-page>
+}

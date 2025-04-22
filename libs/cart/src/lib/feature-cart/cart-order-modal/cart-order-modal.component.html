@@ -1,0 +1,47 @@
+<lv-base-modal>
+  <div class="order-modal">
+    <div class="h2 mb20">Введите данные для доставки</div>
+    <form class="order-form" [formGroup]="orderForm">
+      <div class="order-form__line">
+        <lv-input formControlName="firstName">
+          Имя
+        </lv-input>
+        <lv-input formControlName="lastName">
+          Фамилия
+        </lv-input>
+        <lv-input formControlName="email">
+          Email
+        </lv-input>
+      </div>
+
+      <div class="order-form__line" [formGroup]="orderForm.controls.address">
+        <lv-input formControlName="city">
+          Город
+        </lv-input>
+        <lv-input formControlName="street">
+          Улица
+        </lv-input>
+        <lv-input formControlName="building">
+          Строение
+        </lv-input>
+        <lv-input formControlName="apartment">
+          Квартира
+        </lv-input>
+      </div>
+
+      <div class="order-form__line" [formGroup]="orderForm.controls.timeDate">
+        <lv-input type="date" formControlName="date">
+          Дата
+        </lv-input>
+        <lv-input type="time" formControlName="time">
+          Время
+        </lv-input>
+      </div>
+
+      <div class="order-form__btn">
+        <button class="light-btn" (click)="onConfirm(false)">Отменить</button>
+        <button class="primary-btn" (click)="onConfirm(true)">Сделать заказ</button>
+      </div>
+    </form>
+  </div>
+</lv-base-modal>

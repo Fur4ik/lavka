@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@lavka/cart": ["libs/cart/src/index.ts"],
+      "@lavka/common-ui": ["libs/common-ui/src/index.ts"],
+      "@lavka/data-access": ["libs/data-access/src/index.ts"],
+      "@lavka/home": ["libs/home/src/index.ts"],
+      "@lavka/layout": ["libs/layout/src/index.ts"],
+      "@lavka/product": ["libs/product/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

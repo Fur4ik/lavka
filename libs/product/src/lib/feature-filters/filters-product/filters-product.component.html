@@ -1,0 +1,28 @@
+<lv-filter-dropdown (emitFilter)="emitFilter()">
+  <span title>Цена</span>
+  <div>
+    Выберите ценовой диапазон
+    <div class="custom-slider">
+      <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
+    </div>
+  </div>
+</lv-filter-dropdown>
+
+<lv-filter-dropdown (emitFilter)="emitFilter()">
+  <span title>{{selector()}}</span>
+
+  <div class="filter-selectors">
+    <button (click)="onOption(selectors.POPULAR)" [class.filter-options__selected]="selector()===selectors.POPULAR" class="filter-options">{{selectors.POPULAR}}</button>
+    <button (click)="onOption(selectors.TOPPRICE)" [class.filter-options__selected]="selector()===selectors.TOPPRICE" class="filter-options">{{selectors.TOPPRICE}}</button>
+    <button (click)="onOption(selectors.LOWPRICE)" [class.filter-options__selected]="selector()===selectors.LOWPRICE" class="filter-options">{{selectors.LOWPRICE}}</button>
+  </div>
+</lv-filter-dropdown>
+
+<lv-filter-dropdown
+  typeFilter="checkBox"
+  (isSelected)="isAssembled.set($event); emitFilter()"
+>
+  <span title>Уже собран</span>
+</lv-filter-dropdown>
+
+

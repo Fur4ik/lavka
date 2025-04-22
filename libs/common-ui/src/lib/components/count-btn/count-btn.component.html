@@ -1,0 +1,20 @@
+<div class="info-price__price">
+  <span class="h2">{{ price() | price }}</span>
+  <span class="gray-text">{{ oldPrice() | price }}</span>
+</div>
+
+<div class="info__products__btn">
+  <button
+    [class.gray-text]="innerValue.value===1"
+    (click)="onMinus()">
+    <svg class="svg28" icon="minus"></svg>
+  </button>
+  <input
+    class="info__products-count"
+    type="text"
+    [formControl]="innerValue"
+  >
+  <button (click)="onPlus()">
+    <svg class="svg28" icon="plus"></svg>
+  </button>
+</div>

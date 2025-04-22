@@ -1,0 +1,67 @@
+@if (product(); as product) {
+  <lv-base-modal>
+    <div class="product-modal">
+      <div class="product-modal__img">
+        @if (currentImage(); as currentImage) {
+          <img class="product-modal__main-img" [src]="currentImage" alt="">
+        }
+        <div class="product-modal__btn-container">
+          @for (image of product.images; track image) {
+            <button (click)="onImage(image)">
+              <img class="btn-img" [src]="image" alt="">
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="product-modal__info">
+        <div class="product-modal__info-header primary-text">
+          <div class="info_available">
+            @if (product.assembled) {
+              <span>Наличие подтверждено {{ product.availabilityTime }} мин назад</span>
+            }
+          </div>
+          <div class="info-header__btn">
+            <button (click)="onLike()">
+              <svg class="svg24 primary-text" icon="like"></svg>
+            </button>
+            <button (click)="onCross()">
+              <svg class="svg24 primary-text" icon="cross"></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="product-modal__info-name mb14">
+          <span class="h2">{{ product.name }}</span>
+          <div class="product-modal__info-score primary-text">
+            <div class="product-modal__info-score__svg">
+              <svg class="svg16" icon="star"></svg>
+              {{ product.score }}
+            </div>
+            <span>{{ product.scoreCount | scoreCount }} оценок о товаре</span>
+          </div>
+        </div>
+
+        <div class="product-modal__info-price mb20">
+          <lv-count-btn
+            [price]="price()"
+            [oldPrice]="oldPrice()"
+            [formControl]="productCount"
+          />
+        </div>
+
+        <button class="product-modal__info-btn mb40"
+                (click)="toCart()"
+        >
+          <span>Добавить в корзину</span>
+        </button>
+
+        <div class="product-modal__info-description">
+          <span class="h3">Описание</span>
+          <span class="medium">{{ product.description }}</span>
+        </div>
+
+      </div>
+    </div>
+  </lv-base-modal>
+}

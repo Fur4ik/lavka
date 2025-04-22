@@ -1,0 +1,19 @@
+:host {
+  display: grid;
+  box-shadow: 0 10px 40px 2px #e4e4e4;
+  border-radius: 20px;
+  padding: 10px 24px 10px 10px;
+  align-items: center;
+  grid-template-columns: 90px 1fr auto 20px;
+  grid-gap: 20px;
+}
+
+.product-img{
+  width: 90px;
+  height: 90px;
+  border-radius: 16px;
+}
+
+.medium{
+  font-size: 18px;
+}

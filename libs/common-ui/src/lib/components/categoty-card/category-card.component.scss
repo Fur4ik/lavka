@@ -1,0 +1,22 @@
+.category-card {
+  display: flex;
+  height: 184px;
+  width: 184px;
+  background-color: var(--light-gray-color);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.category-name {
+  padding: 16px;
+}
+
+.category-img{
+  position: absolute;
+}
+
+.shadow{
+  box-shadow: 0 10px 30px 4px #e4e4e4;
+}

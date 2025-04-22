@@ -1,0 +1,19 @@
+@if (products(); as products) {
+  @if (products.length) {
+    <span class="h1 mb40">Ваш заказ</span>
+    <div class="mb80">
+      <lv-cart-product-list [products]="products" />
+    </div>
+
+    <lv-cart-footer
+      [cart]="products"
+      (orderEmit)="toOrder($event)"
+    />
+  } @else {
+    <span class="h1 mb40">Ваша корзина пуста</span>
+
+    <span class=" h2 mb20">Выберите то, что вам по душе в категориях</span>
+
+    <lv-home-categories-list />
+  }
+}

@@ -1,0 +1,17 @@
+@if (pageType()==='product') {
+  <div class="mb24">
+    <lv-filters-product (emitFilterOutput)="getFilters($event)" />
+  </div>
+}
+
+<div class="product-main">
+  <span class="h2"> <ng-content /> </span>
+  <div class="">
+    @if (filteredProducts(); as products) {
+      <lv-product-list [products]="products" />
+    }
+    @if (filteredProducts().length === 0) {
+      <span class="h2"> Ничего не найдено :( </span>
+    }
+  </div>
+</div>

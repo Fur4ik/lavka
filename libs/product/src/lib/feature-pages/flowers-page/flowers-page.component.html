@@ -1,0 +1,8 @@
+<div class="h1 mb20">Букеты</div>
+
+@if (products$ | async; as products) {
+  <lv-product-page [products]="products">
+    Свежие, нежные и роскошные букеты — от классических роз и тюльпанов до экзотических
+    орхидей и гортензий.
+  </lv-product-page>
+}

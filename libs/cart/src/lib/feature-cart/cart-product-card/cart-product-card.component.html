@@ -1,0 +1,14 @@
+@if (product(); as product) {
+  <img class="product-img" [src]="product.product.images[0]" alt="">
+  <span class="medium">{{ product.product.name }}</span>
+
+  <lv-count-btn
+    [formControl]="innerCount"
+    [price]="price()"
+    [oldPrice]="oldPrice()"
+  />
+
+  <button (click)="onDelete($event)">
+    <svg class="svg24" icon="delete"></svg>
+  </button>
+}

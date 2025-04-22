@@ -1,0 +1,29 @@
+.header__img{
+  height: 50px;
+  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  img{
+    height: 50px;
+    overflow: hidden;
+  }
+}
+
+.header__main{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.label, .svg24{
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.header__btn{
+  display: flex;
+  align-items: center;
+}

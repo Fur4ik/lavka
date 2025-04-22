@@ -1,0 +1,12 @@
+<span class="h1">Подарки в Москве</span>
+
+<lv-home-categories-list />
+
+@if (products$ | async; as products) {
+  <lv-product-page
+    [products]="products"
+    pageType="home"
+  >
+    Эти товары часто покупают
+  </lv-product-page>
+}

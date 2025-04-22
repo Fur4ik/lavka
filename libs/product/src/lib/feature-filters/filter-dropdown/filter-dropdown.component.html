@@ -1,0 +1,23 @@
+<button
+  class="filter-btn"
+  type="button"
+        (click)="onBtn()"
+  [class.filter-btn__selected]="isOpen() && typeFilter() !== 'select'"
+>
+  <ng-content select="[title]"/>
+
+  @if (typeFilter() === 'select') {
+    <span class="button__divider"></span>
+    <svg class="svg16" icon="arrow-down"></svg>
+  }
+</button>
+
+@if (isOpen() && typeFilter() === 'select') {
+  <div class="filter-dropdown" #dropdown>
+    <ng-content />
+
+    <div class="filter-dropdown__btn">
+      <button class="light-btn" (click)="toApply()">Применить</button>
+    </div>
+  </div>
+}

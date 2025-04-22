@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  padding: 16px 60px 16px 60px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--light-color);
+  border-top: var(--primary-color) solid 2px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+  justify-content: space-between;
+}
+
+.medium {
+  font-size: 22px;
+}
+
+.footer-btn{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

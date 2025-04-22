@@ -1,1 +1,143 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'margins';
+
+:root{
+  --light-color: #FFFFFF;
+  --light-gray-color: #F6F6F6;
+  --gray-color: #8C8C8C;
+  --primary-color: #FF7663;
+  --dark-color: #000000
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: noto sans, sans-serif;
+}
+
+.h1{
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+}
+
+.h2{
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.h3{
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+
+.medium{
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+.regular{
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+.gray-text{
+  color: var(--gray-color);
+  font-weight: 500;
+  font-size: 10px;
+}
+
+.primary-text{
+  color: var(--primary-color);
+  font-weight: 500;
+  line-height: 24px;
+  font-size: 12px;
+}
+
+button{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.light-btn{
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 8px;
+  border: var(--gray-color) 1px solid;
+  gap: 8px;
+  font-size: 20px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.primary-btn{
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 8px;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  font-size: 20px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.svg10{
+  width: 10px;
+  height: 10px;
+}
+
+.svg16{
+  width: 16px;
+  height: 16px;
+}
+
+.svg20{
+  width: 20px;
+  height: 20px;
+}
+
+.svg24{
+  width: 24px;
+  height: 24px;
+}
+
+.svg28{
+  width: 28px;
+  height: 28px;
+}
+
+.filter-btn{
+  display: inline-flex;
+  background-color: var(--light-gray-color);
+  border-radius: 20px;
+  padding: 14px 24px;
+  font-size: 16px;
+  color: var(--dark-color);
+  width: min-content;
+  text-wrap: nowrap;
+  align-items: center;
+  position: relative;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.filter-btn__selected{
+  color: var(--light-color);
+  background-color: var(--dark-color);
+}

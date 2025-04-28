@@ -11,6 +11,7 @@ import { Filters, SELECTORS } from "../../data"
   templateUrl: "./product-page.component.html",
   styleUrl: "./product-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class ProductPageComponent implements OnInit {
   products = input<Product[]>()

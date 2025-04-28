@@ -5,7 +5,7 @@ import { PricePipe, ProductModalComponent, ScoreCountPipe, SvgIconComponent } fr
 
 @Component({
   selector: "lv-product-card",
-  imports: [CommonModule, ScoreCountPipe, PricePipe, SvgIconComponent],
+  imports: [CommonModule, PricePipe, SvgIconComponent, ScoreCountPipe],
   templateUrl: "./product-card.component.html",
   styleUrl: "./product-card.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,11 +31,11 @@ export class ProductCardComponent {
     event.stopPropagation()
 
     const product = this.product()
-    if(!product) return
+    if (!product) return
 
     const payload: CartPayload = {
       product,
-      count: 1
+      count: 1,
     }
 
     this.cartService.addToCart(payload)

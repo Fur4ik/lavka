@@ -27,8 +27,7 @@ export class CartPageComponent {
 
   async toOrder(toggle: boolean) {
     if (toggle) {
-      this.modalService.show(CartOrderModalComponent)
-      // this.store.dispatch(cartActions.refreshCart({}))
+      this.modalService.show(CartOrderModalComponent, new Map().set('products', this.products()))
       return
     }
 

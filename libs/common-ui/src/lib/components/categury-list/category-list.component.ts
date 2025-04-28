@@ -1,4 +1,4 @@
-import { Component, inject, input } from "@angular/core"
+import { Component, inject } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { CategoryCardComponent } from ".."
 import { HomeServices } from "@lavka/data-access"

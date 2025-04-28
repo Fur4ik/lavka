@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core"
+import { ChangeDetectionStrategy, Component, inject, input } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { BaseModalComponent, LvInputComponent } from "@lavka/common-ui"
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop"
-import { cartActions, ModalService } from "@lavka/data-access"
+import { cartActions, CartPayload, EmailDto, EmailService, ModalService, Product } from "@lavka/data-access"
 import { Store } from "@ngrx/store"
 
 @Component({
@@ -16,6 +16,9 @@ import { Store } from "@ngrx/store"
 export class CartOrderModalComponent {
   modalService = inject(ModalService)
   store = inject(Store)
+  emailService = inject(EmailService)
+
+  products = input<CartPayload[]>()
 
   orderForm = new FormGroup({
     firstName: new FormControl<string>("", [Validators.required, Validators.pattern(/^[А-Яа-яЁё]+$/)]),
@@ -43,6 +46,38 @@ export class CartOrderModalComponent {
     this.modalService.close()
 
     if (toggle) {
+      const products = this.products()
+      const controls = this.orderForm.controls;
+      const controlsAddress = this.orderForm.controls.address.controls;
+      if(!products || !controls) return
+
+      const payload: EmailDto = {
+        email: controls.email.value!,
+        product: products.map((product) => ({
+          name: product.product.name,
+          count: product.count,
+          price: product.product.price,
+          img: `https://lavka-six.vercel.app${product.product.images[0]}`,
+          totalPriceProduct: product.count * product.product.price,
+        })),
+        totalPrice: products.reduce(function (acc, item) {
+          return (acc += item.count * item.product.price)
+        }, 0),
+        logo: 'https://lavka-six.vercel.app/assets/img/logo.png',
+        address: `г. ${controlsAddress.city.value}, ул. ${controlsAddress.street.value} ${controlsAddress.building.value}, кв.${controlsAddress.apartment.value}`,
+        data: controls.timeDate.controls.date.value!,
+        time: controls.timeDate.controls.time.value!,
+      }
+
+      this.emailService.sendEmail(payload)
+        .then(()=>{
+          console.log("Все окейно")
+        })
+
+      console.log(payload)
+
+
+      // if (this.orderForm.invalid) return
       this.store.dispatch(cartActions.removeCart({}))
     }
   }

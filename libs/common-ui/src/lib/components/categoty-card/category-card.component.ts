@@ -9,6 +9,7 @@ import { RouterLink } from "@angular/router"
   templateUrl: "./category-card.component.html",
   styleUrl: "./category-card.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true
 })
 export class CategoryCardComponent {
   category = input<Category>()

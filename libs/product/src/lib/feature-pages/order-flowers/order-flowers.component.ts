@@ -76,7 +76,7 @@ export class OrderFlowersComponent {
     const orderControls = this.orderForm.controls
     const description =
       this.orderForm.controls.description.value +
-      ` ${orderControls.flowers.getRawValue().map((val) => ` ${val.flower} * ${val.count}`)}`
+      ` ${orderControls.flowers.getRawValue().map((val) => ` ${val.flower} * ${val.count}шт.`)}`
 
     const id = Math.random()
 

@@ -33,13 +33,15 @@
 
         <div class="product-modal__info-name mb14">
           <span class="h2">{{ product.name }}</span>
-          <div class="product-modal__info-score primary-text">
-            <div class="product-modal__info-score__svg">
-              <svg class="svg16" icon="star"></svg>
-              {{ product.score }}
+          @if (product.scoreCount > 0) {
+            <div class="product-modal__info-score primary-text">
+              <div class="product-modal__info-score__svg">
+                <svg class="svg16" icon="star"></svg>
+                {{ product.score }}
+              </div>
+              <span>{{ product.scoreCount | scoreCount }} оценок о товаре</span>
             </div>
-            <span>{{ product.scoreCount | scoreCount }} оценок о товаре</span>
-          </div>
+          }
         </div>
 
         <div class="product-modal__info-price mb20">

@@ -1,4 +1,7 @@
-@for (notification of notifications(); track notification) {
-  <span>{{notification}}</span>
-}
-
+<div class="notification_base">
+  @for (notification of notifications(); track $index) {
+    <div class="notification_main">
+      {{ notification }}
+    </div>
+  }
+</div>

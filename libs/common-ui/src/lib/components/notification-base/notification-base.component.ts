@@ -1,27 +1,24 @@
-import { ChangeDetectionStrategy, Component, OnInit, signal } from "@angular/core"
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core"
 import { CommonModule } from "@angular/common"
+import { NotificationService } from "./notification.service"
 
 @Component({
   selector: "lv-notification-base",
   imports: [CommonModule],
   templateUrl: "./notification-base.component.html",
   styleUrl: "./notification-base.component.scss",
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
-export class NotificationBaseComponent implements OnInit {
-  notifications = signal<string[]>([])
+export class NotificationBaseComponent {
+  notificationService = inject(NotificationService)
+  notifications = this.notificationService.notifications
 
-  ngOnInit() {
+  constructor() {
     setInterval(() => {
-      const notifications = this.notifications()
-      notifications.shift()
-      this.notifications.set(notifications)
-    }, 3000)
-  }
-
-  addNotification(notification: string) {
-    const notifications = this.notifications()
-    notifications.push(notification)
-    this.notifications.set(notifications)
+      const updatedNotifications = [...this.notifications()]
+      updatedNotifications.shift()
+      this.notifications.set(updatedNotifications)
+    }, 2000)
   }
 }

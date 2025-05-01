@@ -1,0 +1,40 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.flower-selector {
+  display: flex;
+  gap: 30px;
+
+  .primary-btn {
+    font-size: 16px;
+    height: min-content;
+  }
+}
+
+.flower-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 1px solid var(--dark-color);
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.flower-name {
+  font-size: 20px;
+}
+
+.flower-count {
+  display: flex;
+  gap: 20px;
+}
+
+.order__footer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: end;
+}

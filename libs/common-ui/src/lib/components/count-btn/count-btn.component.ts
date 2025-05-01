@@ -22,8 +22,8 @@ import { PricePipe } from "../../pipes"
 export class CountBtnComponent implements ControlValueAccessor {
   innerValue = new FormControl<number>(1)
 
-  price = input.required<number>()
-  oldPrice = input.required<number>()
+  price = input<number>(0)
+  oldPrice = input<number>(0)
 
   @HostListener('click', ["$event"])
   onClick(event: MouseEvent) {

@@ -33,7 +33,6 @@ export class CartService {
     return of(JSON.parse(localStorage.getItem("cart")!))
   }
 
-
   removeFromCart(payload: CartPayload) {
     const cartStorage = localStorage.getItem("cart");
     if (!cartStorage) return of([]);

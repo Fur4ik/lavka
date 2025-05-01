@@ -1,7 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, input, signal } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { CartPayload, CartService, ModalService, Product } from "@lavka/data-access"
-import { PricePipe, ProductModalComponent, ScoreCountPipe, SvgIconComponent } from "@lavka/common-ui"
+import {
+  NotificationService,
+  PricePipe,
+  ProductModalComponent,
+  ScoreCountPipe,
+  SvgIconComponent
+} from "@lavka/common-ui"
 
 @Component({
   selector: "lv-product-card",
@@ -13,6 +19,7 @@ import { PricePipe, ProductModalComponent, ScoreCountPipe, SvgIconComponent } fr
 export class ProductCardComponent {
   modalService = inject(ModalService)
   cartService = inject(CartService)
+  notificationService = inject(NotificationService)
 
   product = input<Product>()
 
@@ -38,6 +45,7 @@ export class ProductCardComponent {
       count: 1,
     }
 
+    this.notificationService.addNotification('Товар добавлен в корзину')
     this.cartService.addToCart(payload)
   }
 

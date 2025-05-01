@@ -1,0 +1,17 @@
+.notification_base {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification_main {
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  font-size: 16px;
+  padding: 10px;
+  color: var(--light-color);
+}

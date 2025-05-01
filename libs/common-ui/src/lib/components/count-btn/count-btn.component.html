@@ -1,7 +1,10 @@
-<div class="info-price__price">
-  <span class="h2">{{ price() | price }}</span>
-  <span class="gray-text">{{ oldPrice() | price }}</span>
-</div>
+  <div class="info-price__price">
+
+    <span class="h2">{{ price() | price }}</span>
+@if (oldPrice() > 0) {
+    <span class="gray-text">{{ oldPrice() | price }}</span>
+}
+  </div>
 
 <div class="info__products__btn">
   <button

@@ -11,7 +11,7 @@ export class EmailService {
   #templateID = 'template_9m05f0c'
 
   constructor() {
-    emailjs.init(this.#publicKey); // Инициализация
+    emailjs.init(this.#publicKey);
   }
 
   sendEmail(template_params: EmailDto) {

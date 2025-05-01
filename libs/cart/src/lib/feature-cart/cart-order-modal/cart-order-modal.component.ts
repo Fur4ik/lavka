@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, input } from "@angular/core"
+import { ChangeDetectionStrategy, Component, inject, input, signal } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { BaseModalComponent, LvInputComponent } from "@lavka/common-ui"
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop"
-import { cartActions, CartPayload, EmailDto, EmailService, ModalService, Product } from "@lavka/data-access"
+import { cartActions, CartPayload, EmailDto, EmailService, ModalService } from "@lavka/data-access"
 import { Store } from "@ngrx/store"
 
 @Component({
@@ -19,6 +18,7 @@ export class CartOrderModalComponent {
   emailService = inject(EmailService)
 
   products = input<CartPayload[]>()
+  formInvalid = signal(false)
 
   orderForm = new FormGroup({
     firstName: new FormControl<string>("", [Validators.required, Validators.pattern(/^[А-Яа-яЁё]+$/)]),
@@ -36,16 +36,15 @@ export class CartOrderModalComponent {
     })
   })
 
-  constructor() {
-    this.orderForm.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {
-      console.log(value)
-    })
-  }
-
   onConfirm(toggle: boolean) {
-    this.modalService.close()
+    if (!toggle) this.modalService.close()
 
     if (toggle) {
+      if (this.orderForm.invalid) {
+        this.formInvalid.set(true)
+        return
+      }
+
       const products = this.products()
       const controls = this.orderForm.controls;
       const controlsAddress = this.orderForm.controls.address.controls;
@@ -74,10 +73,7 @@ export class CartOrderModalComponent {
           console.log("Все окейно")
         })
 
-      console.log(payload)
-
-
-      // if (this.orderForm.invalid) return
+      this.modalService.close()
       this.store.dispatch(cartActions.removeCart({}))
     }
   }

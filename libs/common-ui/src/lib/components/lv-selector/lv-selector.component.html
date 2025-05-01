@@ -1,0 +1,14 @@
+<label class="lv-label-selector">
+  <ng-content />
+
+  <button class="selector-value lv-input" (click)="isOpen.set(!isOpen())">{{ value() }}</button>
+  <div class="selector-wrapper">
+    @if (isOpen()) {
+      <div class="selector-options">
+        @for (flower of flowers(); track flower) {
+          <span class="selector-option" (click)="setSelector(flower.name)">{{ flower.name }}</span>
+        }
+      </div>
+    }
+  </div>
+</label>

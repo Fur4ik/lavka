@@ -4,39 +4,43 @@
     <form class="order-form" [formGroup]="orderForm">
       <div class="order-form__line">
         <lv-input formControlName="firstName">
-          Имя
+          Имя*
         </lv-input>
         <lv-input formControlName="lastName">
-          Фамилия
+          Фамилия*
         </lv-input>
         <lv-input formControlName="email">
-          Email
+          Email*
         </lv-input>
       </div>
 
       <div class="order-form__line" [formGroup]="orderForm.controls.address">
         <lv-input formControlName="city">
-          Город
+          Город*
         </lv-input>
         <lv-input formControlName="street">
-          Улица
+          Улица*
         </lv-input>
         <lv-input formControlName="building">
-          Строение
+          Строение*
         </lv-input>
         <lv-input formControlName="apartment">
-          Квартира
+          Квартира*
         </lv-input>
       </div>
 
       <div class="order-form__line" [formGroup]="orderForm.controls.timeDate">
         <lv-input type="date" formControlName="date">
-          Дата
+          Дата*
         </lv-input>
         <lv-input type="time" formControlName="time">
-          Время
+          Время*
         </lv-input>
       </div>
+
+      @if (this.formInvalid()) {
+        <div class="error-message">Заполните все поля!</div>
+      }
 
       <div class="order-form__btn">
         <button class="light-btn" (click)="onConfirm(false)">Отменить</button>

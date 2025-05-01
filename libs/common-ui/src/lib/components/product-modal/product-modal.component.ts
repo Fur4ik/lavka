@@ -4,7 +4,7 @@ import { cartActions, CartPayload, ModalService, Product } from "@lavka/data-acc
 import { FormControl, ReactiveFormsModule } from "@angular/forms"
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop"
 import { ScoreCountPipe } from "../../pipes"
-import { BaseModalComponent } from ".."
+import { BaseModalComponent, NotificationService } from ".."
 import { SvgIconComponent } from "../svg-icon/svg-icon.component"
 import { CountBtnComponent } from "../count-btn/count-btn.component"
 import { Store } from "@ngrx/store"
@@ -19,6 +19,7 @@ import { Store } from "@ngrx/store"
 export class ProductModalComponent implements OnInit {
   modalService = inject(ModalService)
   store = inject(Store)
+  notificationService = inject(NotificationService)
 
   productCount = new FormControl<number>(1)
 
@@ -68,6 +69,7 @@ export class ProductModalComponent implements OnInit {
       count: value,
     }
 
+    this.notificationService.addNotification('Товар добавлен в корзину')
     this.store.dispatch(cartActions.addProduct({payload}))
   }
 }

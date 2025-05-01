@@ -1,1 +1,39 @@
-<p>order-flowers works!</p>
+<div class="h1 mb20">Соберите свой уникальный букет</div>
+
+<form [formGroup]="orderForm">
+  <lv-textarea class="mb40" formControlName="description">
+    Опишите букет мечты*
+  </lv-textarea>
+
+  <p class="h2 mb14">Выберите цветы и их количество</p>
+
+  <div class="flower-selector mb20">
+    <lv-selector
+      formControlName="currentValue"
+      [flowers]="flowers"
+      [defaultValue]="defaultSelectorValue" />
+    <button class="primary-btn" (click)="addFlower()">Добавить цветок</button>
+  </div>
+
+  <div class="mb40">
+    @for (group of orderForm.controls.flowers.controls; track group; let i = $index) {
+      <div class="flower-wrapper mb14" [formGroup]="group">
+        <span class="flower-name">{{ group.controls.flower.value }}</span>
+
+        <div class="flower-count">
+          <lv-count-btn [price]="group.controls.price.value! * group.controls.count.value!" formControlName="count" />
+          <button (click)="deleteFlower(i)">
+            <svg class="svg24" icon="delete"></svg>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (totalPrice()) {
+    <div class="order__footer">
+      <span class="flower-name">{{ totalPrice() | price }}</span>
+      <button class="primary-btn" (click)="toCart()">Положить в корзину</button>
+    </div>
+  }
+</form>

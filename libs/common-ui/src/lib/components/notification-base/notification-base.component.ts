@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core"
+import { ChangeDetectionStrategy, Component, effect, inject } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { NotificationService } from "./notification.service"
 
@@ -14,11 +14,11 @@ export class NotificationBaseComponent {
   notificationService = inject(NotificationService)
   notifications = this.notificationService.notifications
 
-  constructor() {
+  ngOnInit() {
     setInterval(() => {
       const updatedNotifications = [...this.notifications()]
       updatedNotifications.shift()
       this.notifications.set(updatedNotifications)
-    }, 2000)
+    }, 2500)
   }
 }

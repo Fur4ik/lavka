@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, input, signal } from "@angular/core"
 import { CommonModule } from "@angular/common"
-import { BaseModalComponent, LvInputComponent } from "@lavka/common-ui"
+import { BaseModalComponent, LvInputComponent, NotificationService } from "@lavka/common-ui"
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 import { cartActions, CartPayload, EmailDto, EmailService, ModalService } from "@lavka/data-access"
 import { Store } from "@ngrx/store"
@@ -16,6 +16,7 @@ export class CartOrderModalComponent {
   modalService = inject(ModalService)
   store = inject(Store)
   emailService = inject(EmailService)
+  notificationService = inject(NotificationService)
 
   products = input<CartPayload[]>()
   formInvalid = signal(false)
@@ -71,6 +72,7 @@ export class CartOrderModalComponent {
       this.emailService.sendEmail(payload)
         .then(()=>{
           console.log("Все окейно")
+          this.notificationService.addNotification('На вашу почту отправлено сообщение с заказом')
         })
 
       this.modalService.close()

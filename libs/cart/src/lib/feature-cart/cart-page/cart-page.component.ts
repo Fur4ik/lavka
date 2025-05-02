@@ -6,7 +6,7 @@ import { cartActions, cartFeature, CartPayload, CartService, ModalService, selec
 import { Store } from "@ngrx/store"
 import { CartFooterComponent } from "../cart-footer/cart-footer.component"
 import { CartOrderModalComponent } from "../cart-order-modal/cart-order-modal.component"
-import { CategoryListComponent, ConfirmationModalComponent } from "@lavka/common-ui"
+import { CategoryListComponent, ConfirmationModalComponent, NotificationService } from "@lavka/common-ui"
 
 @Component({
   selector: "lv-cart-page",
@@ -18,6 +18,7 @@ import { CategoryListComponent, ConfirmationModalComponent } from "@lavka/common
 export class CartPageComponent {
   store = inject(Store)
   modalService = inject(ModalService)
+  notificationService = inject(NotificationService)
 
   products: Signal<CartPayload[]> = this.store.selectSignal(selectCart)
 
@@ -38,9 +39,10 @@ export class CartPageComponent {
           new Map().set("title", "Вы действительно хотите очистить корзину?")
         )
       )
-    )
+    ) {
       this.store.dispatch(cartActions.removeCart({ cart: this.products() }))
-
+      this.notificationService.addNotification('Корзина была очищена')
+    }
     this.modalService.close()
   }
 }

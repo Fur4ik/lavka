@@ -8,9 +8,6 @@ export class NotificationService {
 
   addNotification(notification: string) {
     const notifications = this.notifications()
-    notifications.push(notification)
-    this.notifications.set(notifications)
-
-    console.log('NotificationService', this.notifications())
+    this.notifications.set([...notifications, notification])
   }
 }

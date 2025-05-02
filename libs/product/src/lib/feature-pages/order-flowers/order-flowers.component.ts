@@ -3,11 +3,11 @@ import { CommonModule } from "@angular/common"
 import {
   CountBtnComponent,
   LvSelectorComponent,
-  LvTextareaComponent,
+  LvTextareaComponent, NotificationService,
   PricePipe,
-  SvgIconComponent,
+  SvgIconComponent
 } from "@lavka/common-ui"
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms"
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop"
 import { CartPayload, CartService, orderFlowers } from "@lavka/data-access"
 
@@ -37,11 +37,12 @@ function getFlowersForm(flower?: string, price?: number) {
 export class OrderFlowersComponent {
   flowers = orderFlowers
   cartService = inject(CartService)
+  notificationService = inject(NotificationService)
 
   totalPrice = signal<number>(0)
 
   orderForm = new FormGroup({
-    description: new FormControl<string>(""),
+    description: new FormControl<string>("", Validators.required),
     currentValue: new FormControl<string>(""),
     flowers: new FormArray([getFlowersForm()]),
   })
@@ -99,5 +100,7 @@ export class OrderFlowersComponent {
     this.cartService.addToCart(payload)
     this.orderForm.controls.flowers.clear()
     this.orderForm.reset()
+
+    this.notificationService.addNotification('Букет добавлен в корзину')
   }
 }

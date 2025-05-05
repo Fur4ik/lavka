@@ -86,7 +86,7 @@ export class OrderFlowersComponent {
         id,
         categoryId: 0,
         name: "Сборный букет",
-        images: ["assets/img/order-flowers.png"],
+        images: ["/assets/img/order-flowers.png"],
         price: this.totalPrice(),
         oldPrice: this.totalPrice(),
         score: 0,
